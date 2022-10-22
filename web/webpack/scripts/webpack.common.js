@@ -50,6 +50,10 @@ module.exports = {
                 },
             },
             {
+                test: /\.md$/,
+                loader: 'raw-loader',
+            },
+            {
                 test: /\.(mp3|mp4|avi)$/,
                 type: 'asset/resource',
                 generator: {
