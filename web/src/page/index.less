@@ -1,23 +1,262 @@
-blockquote {
-    padding: 10px;
+.home-box {
+    width: 1000px;
+    margin: 0 auto;
+}
+.home-img {
+    position: relative;
+    width: 1000px;
+    height: 180px;
+    margin: 0 auto;
+    background: url('https://www.splitshire.com/wp-content/uploads/2021/10/SplitShire-21-4398.jpg') center;
+    background-size: cover;
+    border-radius: 14px;
+
+    &::after {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        display: block;
+        width: 80px;
+        height: 80px;
+        background: url('https://tse2-mm.cn.bing.net/th/id/OIP-C.2qXvtit5DoIXr4eT68LMVwAAAA?pid=ImgDet&rs=1') center;
+        background-size: cover;
+        border-radius: 50%;
+        transform: translate(-50%, 40px);
+        content: '';
+    }
+}
+
+.home-title {
+    width: 200px;
+    margin: 40px auto;
     font-weight: 600;
-    font-size: 15px;
-    font-family: 'Courier New', Courier, monospace;
-    background: rgb(224 241 231);
+    font-size: 20px;
+    text-align: center;
+}
+
+.home-name {
+    width: 700px;
+    // height: 200px;
+    margin: 40px auto;
+    padding: 20px;
+    font-size: 18px;
+    font-family: fantasy;
     border: 1px solid pink;
-    border-radius: 8px;
-}
+    border-radius: 15px;
 
-code {
-    padding: 0 5px;
-    background: rgb(253 213 213 / 50%);
-}
+    div {
+    }
 
-pre code {
-    background: rgb(253 213 213 / 0%);
-}
+    .home-hello {
+    }
 
-pre div {
+    .home-occupation {
+        font-family: cursive;
+    }
+}
+.old-book {
+    width: 150px;
+    height: 300px;
+    position: fixed;
+    top: 300px;
+    right: 50px;
+    border-radius: 10px;
+    background: red;
+}
+.new-book {
+    margin: 10px 0 20px 0;
+    width: 550px;
+    display: flex;
+    align-items: center;
+    span {
+        padding-left: 10px;
+        border-left: 5px solid pink;
+        padding-right: 10px;
+        width: 100px;
+    }
+    em {
+        display: block;
+        width: 100%;
+        height: 10px;
+        background: red;
+        border-radius: 0 5px 5px 0;
+    }
+}
+.list {
+    width: 550px;
+    margin-right: 20px;
+    border-radius: 10px;
+    .list-box {
+        margin: 5px 0;
+        width: 100%;
+        border-radius: 5px;
+        // height: 100px;
+        border: 1px solid pink;
+        display: flex;
+        align-items: center;
+        img {
+            width: 100px;
+            height: 100px;
+            background-position: center;
+            background-size: cover;
+            border-radius: 10px;
+        }
+        .list-title {
+            padding: 10px;
+            .list-title-t {
+                width: 60%;
+                font-size: 16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .list-desc {
+                color: #918f8f;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .list-tag {
+                display: inline-block;
+                background: rgb(171, 171, 240);
+                margin: 0 5px;
+                padding: 0 2px;
+                border-radius: 5px;
+                height: 18px;
+                line-height: 18px;
+            }
+        }
+    }
+}
+.box {
+    display: flex;
+}
+.MY {
+    display: flex;
+    flex-direction: column;
+}
+.audio-box {
+    width: 400px;
+    height: 200px;
+    background: aqua;
+    border-radius: 10px;
+    .audio-name {
+        height: 40px;
+        background: red;
+        padding-left: 20px;
+        line-height: 40px;
+        font-size: 18px;
+        color: beige;
+    }
+    .img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .img-header {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: url(https://www.52fb.cn/wp-content/uploads/2021/06/1623331789-srchttp___b-ssl.jpeg);
+            background-size: cover;
+            position: relative;
+            &::after {
+                width: 10px;
+                height: 10px;
+                display: block;
+                background: rgb(0, 0, 0);
+                content: '';
+                position: absolute;
+                left: 45px;
+                top: 45px;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        @keyframes changeright {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        .from {
+            animation: changeright 6s linear infinite;
+        }
+        .img-name {
+            width: 130px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .img-open {
+            margin-top: 5px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            audio {
+                display: none;
+            }
+            svg {
+                width: 30px;
+                height: 30px;
+                padding: 0 2px;
+            }
+            span {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+    .imgline {
+        width: 70%;
+        height: 5px;
+        background-color: rgb(235, 198, 198);
+        margin: 10px auto;
+        border-radius: 10px;
+        position: relative;
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 20px;
+            border-radius: 10px%;
+            background-color: red;
+        }
+    }
+}
+.pic-name {
+    margin-top: 10px;
+    height: 40px;
+    background: red;
+    padding-left: 20px;
+    line-height: 40px;
+    font-size: 18px;
+    color: beige;
+}
+.pic {
+    width: 400px;
     border: 1px solid pink;
-    border-radius: 6px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    img {
+        width: 49%;
+        height: 300px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
 }
