@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import OmsViewMarkdown from './utils';
+import OmsViewMarkdown from '../utils/markdown';
+import { useNavigate } from 'react-router-dom';
 import './index.less';
 // <OmsViewMarkdown textContent={aav} darkMode />;
 import aav from '../MD/home/index.md';
+import getcookie from '@/utils/getcookie';
+
 import { util } from 'webpack';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { getArticleList } from '../http/login';
 const list = [
     {
         title: 'js前端面试',
@@ -41,6 +45,7 @@ const App = () => {
     const [line, setLine] = useState(0);
     const [start, setStart] = useState(true);
     const [from, setFrom] = useState('');
+    const navigate = useNavigate();
     const PandaSvg = () => (
         <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor">
             <path
@@ -90,83 +95,96 @@ const App = () => {
             a.current.pause();
         }
     };
-
+    const toDesc = () => {
+        navigate('/11');
+    };
+    const mess = () => {
+        if (getcookie('id')) {
+            navigate('/message');
+        }
+    };
     useEffect(() => {
-        // a.current.duration; //获取总播放时间
-        // a.current.currentTime; //获取播放进度
         setInterval(() => {
-            if (a.current.currentTime) setLine((a.current.currentTime / a.current.duration) * 100);
+            if (a?.current?.currentTime) {
+                setLine((a.current.currentTime / a.current.duration) * 100);
+            }
         }, 1000);
     }, []);
     return (
-        <div className="home-box">
-            <div className="home-img"></div>
-            <div className="home-title">JASMINES</div>
-            <div className="home-name">
-                <div className="home-hello">Hello World</div>
-                <div className="home-occupation">前端程序员</div>
-                <div></div>
-            </div>
-            {/* <div className="old-book"></div> */}
-            <div className="new-book">
-                <span>最新文章</span>
-                <em></em>
-            </div>
-            <div className="box">
-                <div className="list">
-                    {list.map((item, index) => {
-                        return (
-                            <div className="list-box" key={index}>
-                                <img src={item.img} alt="" />
-                                <div className="list-title">
-                                    <div className="list-title-t">{item.title}</div>
-                                    <div className="list-desc">{item.desc}</div>
-                                    {item?.tag.map((item, index) => {
-                                        return (
-                                            <span className="list-tag" key={index}>
-                                                {item}
-                                            </span>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        );
-                    })}
+        <>
+            <div className="message" onClick={mess}></div>
+
+            <div className="home-box">
+                <div className="home-img"></div>
+                <div className="home-title">JASMINES</div>
+                <div className="home-name">
+                    <div className="home-hello">Hello World</div>
+                    <div className="home-occupation">前端程序员</div>
+                    <div></div>
                 </div>
-                <div className="MY">
-                    <div className="audio-box">
-                        <div className="audio-name">我的音乐</div>
-                        <div className="img">
-                            <div className={from}>
-                                <div className="img-header"></div>
-                            </div>
-                            <div className="img-name">
-                                <div>邓紫棋</div>
-                                <div>多久都早在一起</div>
-                                <div className="img-open">
-                                    <CaretLeftOutlined />
-                                    <div onClick={starts}>
-                                        <PandaSvg />
+                {/* <div className="old-book"></div> */}
+                <div className="new-book">
+                    <span>最新文章</span>
+                    <em></em>
+                </div>
+                <div className="box">
+                    <div className="list">
+                        {list.map((item, index) => {
+                            return (
+                                <div className="list-box" key={index} onClick={toDesc}>
+                                    <img src={item.img} alt="" />
+                                    <div className="list-title">
+                                        <div className="list-title-t">{item.title}</div>
+                                        <div className="list-desc">{item.desc}</div>
+                                        {item?.tag.map((item, index) => {
+                                            return (
+                                                <span className="list-tag" key={index}>
+                                                    {item}
+                                                </span>
+                                            );
+                                        })}
                                     </div>
-                                    <CaretRightOutlined />
-                                    <audio
-                                        preload="auto"
-                                        src="https://www.xzmp3.com/down/e40cfb114b2f.mp3"
-                                        controls
-                                        ref={a}
-                                    />
                                 </div>
+                            );
+                        })}
+                    </div>
+                    <div className="MY">
+                        <div className="audio-box">
+                            <div className="audio-name">我的音乐</div>
+                            <div className="img">
+                                <div className={from}>
+                                    <div className="img-header"></div>
+                                </div>
+                                <div className="img-name">
+                                    <div>邓紫棋</div>
+                                    <div>多久都早在一起</div>
+                                    <div className="img-open">
+                                        <CaretLeftOutlined />
+                                        <div onClick={starts}>
+                                            <PandaSvg />
+                                        </div>
+                                        <CaretRightOutlined />
+                                        <audio
+                                            preload="auto"
+                                            src="https://www.xzmp3.com/down/e40cfb114b2f.mp3"
+                                            controls
+                                            ref={a}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="imgline">
+                                <span style={{ width: line + '%' }}></span>
                             </div>
                         </div>
-                        <div className="imgline">
-                            <span style={{ width: line }}></span>
+                        <div className="pic-name">MY相册</div>
+                        <div className="pic">
+                            {list?.map((item, index) => [<img src={item.img} alt="" key={index} />])}
                         </div>
                     </div>
-                    <div className="pic-name">MY相册</div>
-                    <div className="pic">{list?.map((item, index) => [<img src={item.img} alt="" key={index} />])}</div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 

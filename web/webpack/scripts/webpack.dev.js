@@ -15,6 +15,8 @@ module.exports = merge(common, {
         open: true, // 打开默认浏览器
         hot: true, // 热更新
         proxy: { ...proxySetting },
+        // inline: true, //缺少该配置，会出现上面的错误
+        historyApiFallback: true, //缺少该配置，会出现上面的错误
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
 });
