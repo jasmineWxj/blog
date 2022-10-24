@@ -7,7 +7,9 @@ module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
   router.get('/login', controller.home.login);
-  router.get('/timelist', controller.home.timelist);
-  router.get('/gettimelist', controller.home.gettimelist);
+  router.post('/message', controller.home.setmessagelist);
+  router.get('/getmessage', controller.home.getmessage);
+  router.get('/delmessage', controller.home.delmessage);
+
   router.post('/postimg', controller.home.postimg);
 };

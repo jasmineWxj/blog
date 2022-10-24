@@ -26,18 +26,26 @@ class HomeController extends Controller {
     ctx.body = res;
   }
 
-  // 添加时间
-  async timelist() {
+  // 添加评论
+  async setmessagelist() {
     const { ctx } = this;
-    const res = await ctx.service.index.settimelist(ctx.params());
+    const res = await ctx.service.index.setmessage(ctx.params());
     ctx.body = res;
   }
 
   // 获取时间
-  async gettimelist() {
+  async getmessage() {
     const { ctx } = this;
-    const res = await ctx.service.index.gettimelist(ctx.params());
+    const res = await ctx.service.index.getmessage(ctx.params());
     ctx.body = res;
+  }
+
+  // 删除评论
+  async delmessage() {
+    const { ctx } = this;
+    const res = await ctx.service.index.delmessage(ctx.params());
+    ctx.body = res;
+
   }
 
   // 添加图片
