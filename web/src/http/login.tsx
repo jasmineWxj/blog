@@ -71,4 +71,33 @@ function delmessage(params: any) {
     });
 }
 
-export { getArticleList, getLogin, message, getmessage, delmessage };
+// 获取弹幕
+function getmd(params: any) {
+    return new Promise((resolve, reject) => {
+        http('get', '/getmd', params).then(
+            (res) => {
+                resolve(res);
+            },
+            (error) => {
+                console.log('网络异常~', error);
+                reject(error);
+            },
+        );
+    });
+}
+
+function postmds(params: any) {
+    return new Promise((resolve, reject) => {
+        http('get', '/postmd', params).then(
+            (res) => {
+                resolve(res);
+            },
+            (error) => {
+                console.log('网络异常~', error);
+                reject(error);
+            },
+        );
+    });
+}
+
+export { getArticleList, getLogin, message, getmessage, delmessage, getmd, postmds };

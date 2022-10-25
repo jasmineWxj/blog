@@ -1,14 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 import OmsViewMarkdown from '../utils/markdown';
 import { useNavigate } from 'react-router-dom';
+
 import './index.less';
 // <OmsViewMarkdown textContent={aav} darkMode />;
 import aav from '../MD/home/index.md';
 import getcookie from '@/utils/getcookie';
+import { message } from 'antd';
 
 import { util } from 'webpack';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
-import { getArticleList } from '../http/login';
+import { getArticleList, getmd } from '../http/login';
+function timestampToTime(timestamp: any) {
+    const date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+
+    const Y = date.getFullYear() + '/';
+
+    const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+
+    const D = date.getDate() + '/';
+
+    const h = date.getHours() + ':';
+
+    const m = date.getMinutes() + ':';
+
+    const s = date.getSeconds();
+
+    return Y + M + D + h + m + s;
+}
 const list = [
     {
         title: 'js前端面试',
@@ -45,6 +64,7 @@ const App = () => {
     const [line, setLine] = useState(0);
     const [start, setStart] = useState(true);
     const [from, setFrom] = useState('');
+    const [md, setMd] = useState([]);
     const navigate = useNavigate();
     const PandaSvg = () => (
         <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor">
@@ -95,12 +115,14 @@ const App = () => {
             a.current.pause();
         }
     };
-    const toDesc = () => {
-        navigate('/11');
+    const toDesc = (item: any) => {
+        navigate(`/${item.id}`);
     };
     const mess = () => {
         if (getcookie('id')) {
             navigate('/message');
+        } else {
+            message.error('请登录');
         }
     };
     useEffect(() => {
@@ -109,6 +131,13 @@ const App = () => {
                 setLine((a.current.currentTime / a.current.duration) * 100);
             }
         }, 1000);
+        getmd({}).then((res: any) => {
+            if (res.status === 200) {
+                console.log(res.res);
+
+                setMd(res.res);
+            }
+        });
     }, []);
     return (
         <>
@@ -129,20 +158,22 @@ const App = () => {
                 </div>
                 <div className="box">
                     <div className="list">
-                        {list.map((item, index) => {
+                        {md.map((item: any, index) => {
+                            const result = item.tag.split(' ');
                             return (
-                                <div className="list-box" key={index} onClick={toDesc}>
+                                <div className="list-box" key={index} onClick={() => toDesc(item)}>
                                     <img src={item.img} alt="" />
                                     <div className="list-title">
                                         <div className="list-title-t">{item.title}</div>
-                                        <div className="list-desc">{item.desc}</div>
-                                        {item?.tag.map((item, index) => {
+                                        <div className="list-desc">{item.text}</div>
+                                        {result.map((item: any, index: number) => {
                                             return (
                                                 <span className="list-tag" key={index}>
                                                     {item}
                                                 </span>
                                             );
                                         })}
+                                        <span className="time">{timestampToTime(item.time)}</span>
                                     </div>
                                 </div>
                             );
