@@ -100,6 +100,40 @@ class Testdb extends Service {
       return error;
     }
   }
+  // 获取md
+  async getmd(params) {
+    const { app } = this;
+    let c;
+    try {
+      if (params.id) {
+        c = { status: 0, id: params.id };
+      } else {
+        c = { status: 0 };
+      }
+      const res = await app.mysql.select('md', {
+        where: c,
+      });
+      return {
+        res,
+        status: 200,
+      };
+    } catch (err) {
+      return err;
+    }
+  }
+  // 添加md
+  async postmd(params) {
+    const { app } = this;
+    try {
+      await app.mysql.insert('md', params);
+      return {
+        msg: '成功',
+        status: 200,
+      };
+    } catch (err) {
+      return err;
+    }
+  }
 }
 
 

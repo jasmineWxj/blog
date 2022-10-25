@@ -37,28 +37,28 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
-  // config.mysql = {
-  //   app: true,
-  //   agent: false,
-  //   client: {
-  //     host: '120.48.85.51',
-  //     port: '3306',
-  //     user: 'root',
-  //     password: 'Wxj19990406!',
-  //     database: 'time_react_egg',
-  //   },
-  // };
   config.mysql = {
     app: true,
     agent: false,
     client: {
-      host: '127.0.0.1',
+      host: '120.48.85.51',
       port: '3306',
       user: 'root',
-      password: 'admin123',
+      password: 'Wxj19990406!',
       database: 'blog',
     },
   };
+  // config.mysql = {
+  //   app: true,
+  //   agent: false,
+  //   client: {
+  //     host: '127.0.0.1',
+  //     port: '3306',
+  //     user: 'root',
+  //     password: 'admin123',
+  //     database: 'blog',
+  //   },
+  // };
   config.static = {
     prefix: '/public/',
     // dir: [ path.join(appInfo.baseDir, 'app/public'), path.join(appInfo.baseDir, 'app/azz') ],

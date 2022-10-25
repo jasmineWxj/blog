@@ -47,6 +47,16 @@ class HomeController extends Controller {
     ctx.body = res;
 
   }
+  async getmd() {
+    const { ctx } = this;
+    const res = await ctx.service.index.getmd(ctx.params());
+    ctx.body = res;
+  }
+  async postmd() {
+    const { ctx } = this;
+    const res = await ctx.service.index.postmd(ctx.params());
+    ctx.body = res;
+  }
 
   // 添加图片
   async postimg() {
