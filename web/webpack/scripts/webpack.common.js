@@ -104,9 +104,6 @@ module.exports = {
                                 plugins: [
                                     'postcss-preset-env', //能解决大部分兼容问题
                                 ],
-                                lessOptions: {
-                                    javascriptEnabled: true,
-                                },
                             },
                         },
                     },
