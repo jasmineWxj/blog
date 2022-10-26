@@ -88,7 +88,7 @@ function getmd(params: any) {
 
 function postmds(params: any) {
     return new Promise((resolve, reject) => {
-        http('get', '/postmd', params).then(
+        http('post', '/postmd', params).then(
             (res) => {
                 resolve(res);
             },

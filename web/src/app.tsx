@@ -31,11 +31,11 @@ function App() {
             <div>
                 <div className="header">
                     <div className="header-title">
-                        <div>111</div>
+                        <div>欢迎</div>
                     </div>
                     <div className="header-img">
                         <img src="https://cdn.jim-nielsen.com/ios/512/dislyte-2022-06-08.png" alt="" />
-                        {name ? name : <span onClick={openLogin}>登陆</span>}
+                        <div>{name ? name : <span onClick={openLogin}>登陆</span>}</div>
                     </div>
                 </div>
                 <BrowserRouter>

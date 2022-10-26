@@ -4,7 +4,7 @@ import './index.less';
 import getcookie from '@/utils/getcookie';
 import { message, getmessage, delmessage } from '@/http/login';
 import { MsgChild } from '@/page/maschild/index';
-
+import timestampToTime from '@/utils/time';
 function Message() {
     const anim = useRef(null) as any;
     const [, setLottie] = useState() as any;
@@ -89,11 +89,11 @@ function Message() {
                                 <div className="list-text-box">
                                     <div className="list-name">{item.name}</div>
                                     <div className="list-text">{item.value}</div>
-                                    <div className="list-time">{item.time}</div>
+                                    <div className="list-time">{timestampToTime(item.time)}</div>
                                 </div>
-                                <button className="delet" onClick={() => delect(index, item.id)}>
+                                {/* <button className="delet" onClick={() => delect(index, item.id)}>
                                     删除
-                                </button>
+                                </button> */}
                             </div>
                         );
                     })}

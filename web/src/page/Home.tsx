@@ -8,54 +8,25 @@ import aav from '../MD/home/index.md';
 import getcookie from '@/utils/getcookie';
 import { message } from 'antd';
 
-import { util } from 'webpack';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { getArticleList, getmd } from '../http/login';
-function timestampToTime(timestamp: any) {
-    const date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
-
-    const Y = date.getFullYear() + '/';
-
-    const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
-
-    const D = date.getDate() + '/';
-
-    const h = date.getHours() + ':';
-
-    const m = date.getMinutes() + ':';
-
-    const s = date.getSeconds();
-
-    return Y + M + D + h + m + s;
-}
+import timestampToTime from '@/utils/time';
 const list = [
     {
-        title: 'js前端面试',
         img: 'https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        tag: ['javascrip', 'html', 'css'],
-        id: '1',
-        desc: '语法上面，上面，两者最明显的差异是，CommonJS 模块使两者最明显的差异是，CommonJS 模块使用 require()和 module.exports，ES6 模块使用 import 和 export。',
+        height: '300px',
     },
     {
-        title: 'js前端面试',
-        img: 'https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        tag: ['javascrip', 'html', 'css'],
-        id: '1',
-        desc: '语法上面，两上面，两者最明显的差异是，CommonJS 模块使者最明显的差异是，CommonJS 模块使用 require()和 module.exports，ES6 模块使用 import 和 export。',
+        img: 'https://images.pexels.com/photos/5633983/pexels-photo-5633983.jpeg?auto=compress&cs=tinysrgb&w=800',
+        height: '200px',
     },
     {
-        title: 'js前端面试',
-        img: 'https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        tag: ['javascrip', 'html', 'css'],
-        id: '1',
-        desc: '语法上面，两者最明显的差异是，CommonJS 模块使用 require()和 module.exports，ES6 模块使用 import 和 export。',
+        img: 'https://images.pexels.com/photos/5633983/pexels-photo-5633983.jpeg?auto=compress&cs=tinysrgb&w=800',
+        height: '200px',
     },
     {
-        title: 'js前端面试',
-        img: 'https://images.pexels.com/photos/13850240/pexels-photo-13850240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-        tag: ['javascrip', 'html', 'css'],
-        id: '1',
-        desc: '语法上面，两者最明显的差异是，CommonJS 模块使用 require()和 module.exports，ES6 模块使用 import 和 export。',
+        img: 'https://images.pexels.com/photos/5633983/pexels-photo-5633983.jpeg?auto=compress&cs=tinysrgb&w=800',
+        height: '200px',
     },
 ];
 
@@ -149,6 +120,8 @@ const App = () => {
                 <div className="home-name">
                     <div className="home-hello">Hello World</div>
                     <div className="home-occupation">前端程序员</div>
+                    <div className="home-occupation">本页面前端由构建react</div>
+                    <div className="home-occupation">后端egg</div>
                     <div></div>
                 </div>
                 {/* <div className="old-book"></div> */}
@@ -159,6 +132,8 @@ const App = () => {
                 <div className="box">
                     <div className="list">
                         {md.map((item: any, index) => {
+                            console.log(item.time);
+
                             const result = item.tag.split(' ');
                             return (
                                 <div className="list-box" key={index} onClick={() => toDesc(item)}>
@@ -210,7 +185,9 @@ const App = () => {
                         </div>
                         <div className="pic-name">MY相册</div>
                         <div className="pic">
-                            {list?.map((item, index) => [<img src={item.img} alt="" key={index} />])}
+                            {list?.map((item, index) => [
+                                <img src={item.img} style={{ height: item.height }} alt="" key={index} />,
+                            ])}
                         </div>
                     </div>
                 </div>
