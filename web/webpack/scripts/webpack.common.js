@@ -110,23 +110,23 @@ module.exports = {
                     'less-loader',
                 ],
             },
-            {
-                //  专门处理antd的css样式
-                test: /\.(less)$/,
-                include: /node_modules/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            lessOptions: {
-                                javascriptEnabled: true,
-                            },
-                        },
-                    },
-                ],
-            },
+            // {
+            //     //  专门处理antd的css样式
+            //     test: /\.(less)$/,
+            //     include: /node_modules/,
+            //     use: [
+            //         MiniCssExtractPlugin.loader,
+            //         'css-loader',
+            //         {
+            //             loader: 'less-loader',
+            //             options: {
+            //                 lessOptions: {
+            //                     javascriptEnabled: true,
+            //                 },
+            //             },
+            //         },
+            //     ],
+            // },
             {
                 test: /\.(tsx?|js)$/,
                 loader: 'babel-loader',
