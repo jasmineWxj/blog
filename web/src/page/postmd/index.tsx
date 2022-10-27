@@ -34,7 +34,7 @@ function Postmd() {
     return (
         <div className="md">
             <div className="md-box">
-                <MdEditor modelValue={text} onChange={setText} previewOnly />;
+                <MdEditor modelValue={text} onChange={setText} />;
             </div>
             <div>
                 <input type="text" ref={titleRef} placeholder="title" />

@@ -3,6 +3,8 @@ import OmsViewMarkdown from '@/utils/markdown';
 import './index.less';
 import { getmd } from '@/http/login';
 import { useSearchParams, useParams, useNavigate } from 'react-router-dom';
+import MdEditor from 'md-editor-rt';
+
 function Desc() {
     const navigate = useNavigate();
     const params = useParams();
@@ -23,7 +25,8 @@ function Desc() {
                 }}
             ></div>
             <div className="md-box">
-                <OmsViewMarkdown textContent={md.text} darkMode />
+                {/* <OmsViewMarkdown textContent={md.text} darkMode /> */}
+                <MdEditor modelValue={md.text} previewOnly />;
             </div>
         </div>
     );
