@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import OmsViewMarkdown from '@/utils/markdown';
+import { message } from 'antd';
 import './index.less';
 import MdEditor from 'md-editor-rt';
 // import { postmd } from '@/http/login';
@@ -19,8 +20,14 @@ function Postmd() {
                 time: +new Date(),
                 tag: tagRef.current.value,
                 img: imgeRef.current.value,
-            }).then((res) => {
+            }).then((res: any) => {
                 console.log(res);
+                if (res.status === 200) {
+                    message.success('发送成功');
+                    tagRef.current.value = '';
+                    imgeRef.current.value = '';
+                    titleRef.current.value = '';
+                }
             });
         }
     };

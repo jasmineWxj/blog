@@ -4,6 +4,7 @@ import './index.less';
 import getcookie from '@/utils/getcookie';
 import { message, getmessage, delmessage } from '@/http/login';
 import { MsgChild } from '@/page/maschild/index';
+import { message as ccc } from 'antd';
 import timestampToTime from '@/utils/time';
 function Message() {
     const anim = useRef(null) as any;
@@ -21,9 +22,11 @@ function Message() {
                 value: msgvalueRef.current.value,
                 time: +new Date(),
                 pic: '',
-            }).then((res) => {
-                console.log(res);
-                msgvalueRef.current.value = '';
+            }).then((res: any) => {
+                if (res.status === 200) {
+                    ccc.success('发送成功');
+                    msgvalueRef.current.value = '';
+                }
             });
             setMassage([
                 {
@@ -74,8 +77,6 @@ function Message() {
                 <div className="title">评论</div>
                 <div className="list">
                     {massage.map((item: any, index: number) => {
-                        console.log(item);
-
                         return (
                             <div className="list-con" key={index}>
                                 <img
@@ -87,13 +88,19 @@ function Message() {
                                     alt=""
                                 />
                                 <div className="list-text-box">
-                                    <div className="list-name">{item.name}</div>
+                                    <div className={item.name == getcookie('id') ? 'list-name color' : 'list-name'}>
+                                        {item.name}
+                                    </div>
                                     <div className="list-text">{item.value}</div>
                                     <div className="list-time">{timestampToTime(item.time)}</div>
                                 </div>
-                                {/* <button className="delet" onClick={() => delect(index, item.id)}>
-                                    删除
-                                </button> */}
+                                {item.name == getcookie('id') ? (
+                                    <button className="delet" onClick={() => delect(index, item.id)}>
+                                        删除
+                                    </button>
+                                ) : (
+                                    ''
+                                )}
                             </div>
                         );
                     })}
