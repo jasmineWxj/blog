@@ -6,7 +6,7 @@ import MdEditor from 'md-editor-rt';
 // import { postmd } from '@/http/login';
 import { postmds } from '@/http/login';
 function Postmd() {
-    const [text, setText] = useState('hello md-editor-rt！');
+    const [text, setText] = useState('# hello md-editor-rt！');
     const titleRef = useRef(null) as any;
     const tagRef = useRef(null) as any;
     const imgeRef = useRef(null) as any;
@@ -34,7 +34,7 @@ function Postmd() {
     return (
         <div className="md">
             <div className="md-box">
-                <MdEditor modelValue={text} onChange={setText} />;
+                <MdEditor modelValue={text} onChange={setText} previewOnly />;
             </div>
             <div>
                 <input type="text" ref={titleRef} placeholder="title" />
