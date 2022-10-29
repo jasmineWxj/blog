@@ -96,12 +96,12 @@ const App = () => {
             message.error('请登录');
         }
     };
+    setInterval(() => {
+        if (a?.current?.currentTime) {
+            setLine((a.current.currentTime / a.current.duration) * 100);
+        }
+    }, 1000);
     useEffect(() => {
-        setInterval(() => {
-            if (a?.current?.currentTime) {
-                setLine((a.current.currentTime / a.current.duration) * 100);
-            }
-        }, 1000);
         getmd({}).then((res: any) => {
             if (res.status === 200) {
                 console.log(res.res);
@@ -132,8 +132,6 @@ const App = () => {
                 <div className="box">
                     <div className="list">
                         {md.map((item: any, index) => {
-                            console.log(item.time);
-
                             const result = item.tag.split(' ');
                             return (
                                 <div className="list-box" key={index} onClick={() => toDesc(item)}>

@@ -89,3 +89,76 @@ pre div {
     border: 1px solid pink;
     border-radius: 6px;
 }
+
+//小于等于300px时生效
+@media (max-width: 700px) {
+    .home-box {
+        width: 100% !important;
+        .box {
+            .list {
+                width: 100%;
+            }
+            .MY {
+                display: none !important;
+            }
+        }
+    }
+    .message {
+        right: 0 !important;
+    }
+    .header-img {
+        width: 40%;
+    }
+    .header-title {
+        width: 50%;
+    }
+    .home-img {
+        width: 100% !important;
+    }
+    .home-box {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .home-name {
+        width: 100% !important;
+    }
+    .new-book {
+        width: 100% !important;
+    }
+    .md-box-cc {
+        .md-img {
+            width: 100% !important;
+            height: 150px !important;
+        }
+        .md-box {
+            margin: 0 !important;
+            width: 100% !important;
+        }
+    }
+    .message-text {
+        top: 90vh !important;
+        width: 100% !important;
+    }
+    .message-img {
+        top: 70vh !important;
+    }
+}
+
+html {
+    overflow-y: scroll;
+}
+
+:root {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+:root body {
+    position: absolute;
+}
+
+body {
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
+}
