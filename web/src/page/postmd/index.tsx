@@ -11,8 +11,6 @@ function Postmd() {
     const tagRef = useRef(null) as any;
     const imgeRef = useRef(null) as any;
     const postmd = () => {
-        console.log(titleRef.current, tagRef.current, imgeRef.current);
-
         if (titleRef.current && tagRef.current && imgeRef.current && text) {
             postmds({
                 title: titleRef.current.value,
@@ -21,7 +19,6 @@ function Postmd() {
                 tag: tagRef.current.value,
                 img: imgeRef.current.value,
             }).then((res: any) => {
-                console.log(res);
                 if (res.status === 200) {
                     message.success('发送成功');
                     tagRef.current.value = '';

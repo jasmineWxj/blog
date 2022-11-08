@@ -52,22 +52,19 @@ function Message() {
         });
         getmessage({}).then((res: any) => {
             if (res.status === 200) {
-                setMassage(res.res);
+                setMassage(res.res.reverse());
                 massageRef.current = res.res;
             }
         });
     }, []);
 
     const delect = (index: number, id: number) => {
-        console.log(index);
         delmessage({
             id,
             status: 1,
         });
         setMassage(() => {
             massage.splice(index, 1);
-            console.log(massage);
-
             return [...massage];
         });
     };

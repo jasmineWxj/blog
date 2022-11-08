@@ -76,8 +76,6 @@ const App = () => {
 
     const starts = () => {
         setStart(!start);
-        console.log(start);
-
         if (start) {
             setFrom('from');
             a.current.play();
@@ -104,9 +102,7 @@ const App = () => {
     useEffect(() => {
         getmd({}).then((res: any) => {
             if (res.status === 200) {
-                console.log(res.res);
-
-                setMd(res.res);
+                setMd(res.res.reverse());
             }
         });
     }, []);
@@ -189,6 +185,27 @@ const App = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div style={{ width: '300px', margin: '0 auto', padding: '20px 0', textAlign: 'center' }}>
+                <a
+                    target="_blank"
+                    href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41102402000277"
+                    style={{ display: 'inline-block', textDecoration: 'none', height: '20px', lineHeight: '20px' }}
+                    rel="noreferrer"
+                >
+                    {/* <img src="请将备案图标链接放置此处" style={{ float: 'left' }} /> */}
+                    <p
+                        style={{
+                            float: 'left',
+                            height: '20px',
+                            lineHeight: '20px',
+                            margin: '0px 0px 0px 5px',
+                            color: '#939393',
+                        }}
+                    >
+                        京ICP备 2022018878号-1
+                    </p>
+                </a>
             </div>
         </>
     );

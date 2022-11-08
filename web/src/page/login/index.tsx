@@ -15,14 +15,10 @@ function Login(props: any) {
     };
 
     const login = () => {
-        console.log(nameRef.current.value);
-        console.log(passwordRef.current.value);
-
         getLogin({
             name: nameRef.current.value,
             password: passwordRef.current.value,
         }).then((res: any) => {
-            console.log(res);
             if (res.msg == '登陆成功') {
                 message.success('登陆成功');
                 setcookie('id', nameRef.current.value);
