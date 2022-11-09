@@ -6,7 +6,7 @@ import './index.less';
 // <OmsViewMarkdown textContent={aav} darkMode />;
 import aav from '../MD/home/index.md';
 import getcookie from '@/utils/getcookie';
-import { message } from 'antd';
+import { message, Pagination } from 'antd';
 
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { getArticleList, getmd } from '../http/login';
@@ -32,10 +32,12 @@ const list = [
 
 const App = () => {
     const a = useRef(null) as any;
+    const b = useRef(null) as any;
     const [line, setLine] = useState(0);
     const [start, setStart] = useState(true);
     const [from, setFrom] = useState('');
-    const [md, setMd] = useState([]);
+    const [md, setMd] = useState([]) as any;
+    const [action, setAction] = useState([]);
     const navigate = useNavigate();
     const PandaSvg = () => (
         <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor">
@@ -94,6 +96,10 @@ const App = () => {
             message.error('请登录');
         }
     };
+    const pagination = (page: any, pageSize: any) => {
+        const a: any = JSON.parse(JSON.stringify(b.current));
+        setMd([...a.reverse().splice((page - 1) * 6, 6)]);
+    };
     setInterval(() => {
         if (a?.current?.currentTime) {
             setLine((a.current.currentTime / a.current.duration) * 100);
@@ -102,7 +108,10 @@ const App = () => {
     useEffect(() => {
         getmd({}).then((res: any) => {
             if (res.status === 200) {
-                setMd(res.res.reverse());
+                const a: any = JSON.parse(JSON.stringify(res.res));
+                b.current = a;
+                setAction(a);
+                setMd(res.res.reverse().splice(0, 6));
             }
         });
     }, []);
@@ -127,7 +136,7 @@ const App = () => {
                 </div>
                 <div className="box">
                     <div className="list">
-                        {md.map((item: any, index) => {
+                        {md.map((item: any, index: any) => {
                             const result = item.tag.split(' ');
                             return (
                                 <div className="list-box" key={index} onClick={() => toDesc(item)}>
@@ -147,6 +156,12 @@ const App = () => {
                                 </div>
                             );
                         })}
+                        <Pagination
+                            defaultCurrent={1}
+                            total={action.length}
+                            defaultPageSize={6}
+                            onChange={(page, pageSize) => pagination(page, pageSize)}
+                        />
                     </div>
                     <div className="MY">
                         <div className="audio-box">
