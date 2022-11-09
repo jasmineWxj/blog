@@ -156,12 +156,14 @@ const App = () => {
                                 </div>
                             );
                         })}
-                        <Pagination
-                            defaultCurrent={1}
-                            total={action.length}
-                            defaultPageSize={6}
-                            onChange={(page, pageSize) => pagination(page, pageSize)}
-                        />
+                        <div className="pagination">
+                            <Pagination
+                                defaultCurrent={1}
+                                total={action.length}
+                                defaultPageSize={6}
+                                onChange={(page, pageSize) => pagination(page, pageSize)}
+                            />
+                        </div>
                     </div>
                     <div className="MY">
                         <div className="audio-box">
