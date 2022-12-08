@@ -206,7 +206,8 @@ const App = () => {
             <div style={{ width: '300px', margin: '0 auto', padding: '20px 0', textAlign: 'center' }}>
                 <a
                     target="_blank"
-                    href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011302005532"
+                    // href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011302005532"
+                    href="https://www.beian.gov.cn/portal/index"
                     style={{ display: 'inline-block', textDecoration: 'none', height: '20px', lineHeight: '20px' }}
                     rel="noreferrer"
                 >
